@@ -1,13 +1,9 @@
-from flask import Flask , render_template
+from flask import Flask 
+from routes.home import home_route
+from routes.clientes import cliente_route
 
 app = Flask(__name__)
-
-@app .route('/')
-def ola_mundo():
-    return render_template('index.html')
-
-@app .route('/sobre')
-def sobre():
-    return " loren lore n loren"
+app.register_blueprint(home_route)
+app.register_blueprint(cliente_route, url_prefix = '/clientes')
 
 app.run(debug=True)
